@@ -14,8 +14,9 @@ data <-data[complete.cases(data[,1]),]
 split <-createDataPartition(y=data$SENSOR_1, p=0.8, list=FALSE)
 train <- data[split, ]
 test <- data[-split, ]
-nn1.7 <- brnn(SENSOR_1 ~ TEMP+WINS+DEWP+PREA+AIRP+CLOC+HUM,neurons=7,train)
-p<-predict(nn1.7,test)
+#neurons=number of hidden layers
+nn <- brnn(SENSOR_1 ~ TEMP+WINS+DEWP+PREA+AIRP+CLOC+HUM,neurons=7,train)
+p<-predict(nn,test)
 t<-test$SENSOR_25
 mse(t,p)
 rmse(t,p)
