@@ -206,16 +206,12 @@ floral <- function(t1,t2,maxtem,value){
     for (j in 2:ncol(temd)){
       if (temd[i,j] < 0){
         temd[i,j]=0
-      } 
-      if(temd[i,j] >15){
-        temd[i,j]=15
       }
+      if(temd[i,j] > 15){
+        temd[i,j]=15 }
     }
   }
-  if (temd>15){
-    vaselife=0}else{
-      vaselife=370.13-65.91*exp(0.1092*temd)    
-    }
+  vaselife=370.13-65.91*exp(0.1092*temd)
   vaselifeloss=304.22-vaselife
   hourlyfloss=vaselifeloss/vaselife
   totalloss=colSums(hourlyfloss[t1:t2,])
@@ -798,8 +794,3 @@ mean(finallosss)
 write.table (finallossa, file ="finallossabc.csv",sep =",",row.names =FALSE)
 write.table (percentage3, file ="choice-wx3.csv",sep =",",row.names =FALSE)
 
-write.table (finalloss, file ="finallossc5.csv",sep =",",row.names =FALSE)
-write.table (percentagef, file ="choicec4.csv",sep =",",row.names =FALSE)
-
-library(fitdistrplus) 
-fitdist(finallosst,"norm")
